@@ -2,18 +2,11 @@
 # https://github.com/h1karxii/git-remove-submodule
 
 exit_err() {
-  # http://linux.vbird.org/linux_basic/0340bashshell-scripts.php#dis3
   [ $# -gt 0 ] && echo "fatal: $*" 1>&2
   exit 1
 }
 
-# http://wanggen.myweb.hinet.net/ach4/ach4.html?MywebPageId=2019171558072762472#sed_basic
-# https://blog.csdn.net/zhu_xun/article/details/24796235
-# https://askubuntu.com/questions/678915/whats-the-difference-between-and-in-bash
 submodule_name=$(sed 's/\/$//' <<< $1)
-
-# https://www.opencli.com/linux/dev-null-2-and-1-meanning
-# http://blog.jobbole.com/109355/
 git submodule status "$submodule_name" >/dev/null 2>&1
 
 if [ $? == 0 ]; then
